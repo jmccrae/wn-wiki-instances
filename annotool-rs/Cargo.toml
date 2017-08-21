@@ -1,0 +1,16 @@
+[package]
+name = "annotool-rs"
+version = "0.1.0"
+authors = ["John P. McCrae <john@mccr.ae>"]
+
+[dependencies]
+rocket = "0.3.0"
+rocket_codegen = "0.3.0"
+serde = "*"
+serde_json = "*"
+serde_derive = "*"
+handlebars = "*"
+time = "*"
+clap = "*"
+bzip2 = "*"
+regex = "*"

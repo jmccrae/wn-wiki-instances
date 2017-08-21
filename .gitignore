@@ -1,2 +1,14 @@
 *.class
 *.log
+unambiguous-mappings*
+weighted-mappings*
+wiki.json
+wordnet.json
+target
+disambiguations_en.ttl.gz
+wiki-cats-redirs.csv.gz
+*.swp
+Cargo.lock
+empty.bz2
+empty.gz
+log.txt

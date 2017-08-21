@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="WordNet Wiki Annotation Tool"/>
+    <meta name="author" content="John P. McCrae"/>
+    <title>WordNet-Wiktionary Annotation tool</title>
+    <link rel="stylesheet" href="{{context}}/assets/bootstrap.min.css"/>
+    <script src="{{context}}/assets/jquery-1.12.0.min.js"></script>
+    <style>
+        input[type='checkbox'] {
+            -webkit-appearance:none;
+            width:30px;
+            height:30px;
+            background:white;
+            border-radius:5px;
+            border:2px solid #555;
+        }
+        input[type='checkbox']:checked {
+            background: #abd;
+        }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">WordNet Wikipedia Annotation Tool ({{accepted_total}})</a>
+        </div>
+        <div class="navbar-right">
+            <form action="{{context}}/save" style="margin-top:10px;margin-right:10px;">
+            <input type="submit" class="btn btn-success" value="Save"/>
+          </form>
+        </div>
+      </div>
+    </nav>
+    {{{body}}}
+    <div style="margin-bottom:50px;"></div>
+  </body>
+</html>

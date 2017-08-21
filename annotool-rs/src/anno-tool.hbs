@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <h2>Proposed Mapping</h2>
+    <div>
+      <b>WordNet</b>
+      <p> {{wn_cat}} {{wne.lemmas}}</p>
+      <p><i>{{wne.defn}}</i></p>
+    <div>
+      <b>Wikipedia</b>
+      <p><a href="https://en.wikipedia.org/wiki/Category:{{wiki_cat}}" target="_blank">{{wiki_cat}}</a></p>
+    <form action="{{context}}/reject" method="get" style="margin:10px;">
+      <input type="hidden" name="wn_cat" value="{{wn_cat}}"/>
+      <input type="hidden" name="wiki_cat" value="{{wiki_cat}}"/>
+      <input type="submit" class="btn btn-warning" value="Reject"/>
+    </form>
+    <form action="{{context}}/reject_cat" method="get" style="margin:10px;">
+      <input type="hidden" name="wn_cat" value="{{wn_cat}}"/>
+      <input type="hidden" name="wiki_cat" value="{{wiki_cat}}"/>
+      <input type="submit" class="btn btn-danger" value="Reject Wikipedia Category"/>
+    </form>
+    <form action="{{context}}/accept" method="post">
+      <input type="hidden" name="wn_cat" value="{{wn_cat}}"/>
+      <input type="hidden" name="wiki_cat" value="{{wiki_cat}}"/>
+      <table class="table table-striped">
+        <tr>
+          <th style="width:45%;">WordNet</th>
+          <th style="width:45%;">Wikipedia</th>
+          <th style="width:10%;">Accept</th>
+        </tr>
+        {{#each mapping}}
+        <tr>
+          <td>
+            <p>({{wn_id}}) {{lemma}}</p>
+            <p><i>{{defn}}</i></p>
+          </td>
+          <td>
+             <a href="https://en.wikipedia.org/wiki/{{wiki_id}}">{{wiki_id}}</a>
+             <p><i>{{wiki_defn}}</i></p>
+          </td>
+          <td>
+             <input type="checkbox" name="{{wiki_id}}" value="{{wn_id}}" checked="checked"/>
+          </td>
+        </tr>
+        {{/each}}
+      </table>
+      <input type="submit" class="btn btn-default" value="Submit"/>
+    </form>
+  </div>
+<div>
+    
+         
+
+
+         
