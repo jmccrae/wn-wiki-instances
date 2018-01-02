@@ -55,7 +55,8 @@ struct AnnoMapping {
     wiki_id : String,
     lemma : String,
     defn : String,
-    wiki_defn : String
+    wiki_defn : String,
+    good : bool
 }
 
 #[derive(Debug,Clone,Serialize,Deserialize)]
@@ -126,7 +127,8 @@ fn pack_data(wn_cat : &str, wiki_cat : &str, state : &mut WordNetWikiMapping) ->
                 wiki_id: wiki_id.clone(),
                 lemma: state.wordnet.lemmas(&wn_id),
                 defn: state.wordnet.defn(&wn_id),
-                wiki_defn: state.abstracts.get(wiki_id).map(|s| s.to_string()).unwrap_or(String::new())
+                wiki_defn: state.abstracts.get(wiki_id).map(|s| s.to_string()).unwrap_or(String::new()),
+                good: state.mappings.is_good(wn_cat, wiki_cat)
             }
         }).collect();
     mapping.sort_by(|a,b| a.wiki_id.cmp(&b.wiki_id));

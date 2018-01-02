@@ -277,4 +277,13 @@ impl Mappings {
     pub fn contains(&self, wn_or_wiki : &str) -> bool {
         self.cache.contains(wn_or_wiki)
     }
+
+    pub fn is_good(&mut self, wn_cat : &str, wiki_cat : &str) -> bool {
+        let l = self.encode(wn_cat, wiki_cat);
+        match self.data_wt.get(&l) {
+            Some(i) => *i > 0,
+            None => false
+        }
+    }
+        
 }

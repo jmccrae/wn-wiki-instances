@@ -37,7 +37,7 @@ object PersonEvaluation {
       i.replaceAll(" ", "_") -> j
     }).toMap
 
-    val ERR = 5
+    val ERR = 1
     var correctBirth = 0
     var incorrectBirth = 0
     var correctDeath = 0
@@ -45,6 +45,8 @@ object PersonEvaluation {
 
     val deathDate = "<http.*resource/(.*)> <http.*deathDate> \"(-?\\d+).*".r
     val birthDate = "<http.*resource/(.*)> <http.*birthDate> \"(-?\\d+).*".r
+
+    val out = new java.io.PrintWriter("year-errors.txt")
 
     io.Source.fromInputStream(
       new GZIPInputStream(
@@ -59,7 +61,12 @@ object PersonEvaluation {
                   if(year - ERR < tYear && year + ERR > tYear) {
                     correctBirth += 1
                   } else {
-                    println(s"Incorrect Birth $res $year != $tYear")
+                    accepted.get(res) match {
+                      case Some(wnId) =>
+                        val defn = wn(wnId).defn
+                        out.println(s"""${wnId} "${defn}" => "${defn.replaceAll(tYear.toString, year.toString)}"""")
+                      case None =>
+                    }
                     incorrectBirth += 1
                   }
                 })
@@ -74,7 +81,12 @@ object PersonEvaluation {
                 if(year - ERR < tYear && year + ERR > tYear) {
                   correctDeath += 1
                 } else {
-                  println(s"Incorrect Death $res $year != $tYear")
+                    accepted.get(res) match {
+                      case Some(wnId) =>
+                        val defn = wn(wnId).defn
+                        out.println(s"""${wnId} "${defn}" => "${defn.replaceAll(tYear.toString, year.toString)}"""")
+                      case None =>
+                    }
                   incorrectDeath += 1
                 }
               })
@@ -82,6 +94,7 @@ object PersonEvaluation {
         case _ =>
       }
     })
+    out.close
     println(s"Births: $correctBirth/ ${incorrectBirth+correctBirth}")
     println(s"Deaths: $correctDeath/ ${incorrectDeath+correctDeath}")
   }
